@@ -20,7 +20,8 @@ class NotificationController extends Controller
         return view('notification.index');
     }
 
-    public function fetchNotifications(){
+    public function fetchNotifications()
+    {
         $notifications = Notification::all();
         return response()->json([
             'status' => true,
@@ -46,24 +47,23 @@ class NotificationController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'title' => 'required',
             'body' => 'required',
         ]);
-        if (!$validator->passes()){
+        if (!$validator->passes()) {
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
         try {
             $response = '';
 
-            $SERVER_API_KEY = 'AAAALiDuRoo:APA91bG9vg88duBhYDWTgfRSlkFBwDbUVipBk61XolqZMZePc-6bcB0jZ9GZXufX0Dq0H0nIZW0m27ihhMXgzqEPfc2juNFuW-PNbaIkKXjqHDlut3JvTSsNYLeOaqcsI6ZRHdWHsSK4';
-            if ($request->device_id){
+            $SERVER_API_KEY = '';
+            if ($request->device_id) {
                 $tokens = Token::whereIn('nurse_id', $request->device_id)->get();
-            }
-            else {
+            } else {
                 $tokens = Token::all();
             }
-            foreach ($tokens as $token){
+            foreach ($tokens as $token) {
                 $token_1 = $token->token;
 
                 $data = [
@@ -110,21 +110,19 @@ class NotificationController extends Controller
 
                 $response = curl_exec($ch);
             }
-            if ($response){
+            if ($response) {
                 Notification::create([
                     'title' => $request->input('title'),
                     'body' => $request->input('body'),
                 ]);
                 $message = 'Notification send successfully';
-            }
-            else{
+            } else {
                 $message = 'Notification not send';
             }
             return response()->json(['status' => 1, 'message' => $message,]);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return response()->json($exception->getMessage());
         }
-
     }
 
     /**
