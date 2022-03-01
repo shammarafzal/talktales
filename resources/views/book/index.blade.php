@@ -251,9 +251,9 @@
                         $('tbody').append('<tr>\
                             <td>' + book.id + '</td>\
                             <td>' + book.title + '</td>\
-                            <td><video width="180" height="100" controls><source src="storage/app/public/' + book.mouthVideo + '"></video></td>\
+                            <td><video width="180" height="100" controls><source src="storage/' + book.mouthVideo + '"></video></td>\
                             <td><video width="180" height="100" controls><source src="storage/' + book.childVideo + '"></video></td>\
-                            <td><image width="180" height="100" controls><source src="storage/' + book.image + '"></image></td>\
+                            <td><img src="storage/' + book.image + '" alt="" class="rounded-circle thumb-xs mr-1">' + book.title + '</td>\
                             <td>' + book.storyText + '</td>\
                             <td><button value="' + book.id + '" style="border: none; background-color: #000" class="edit_btn"><i class="flaticon2-edit"></i></button></td>\
                             <td><button value="' + book.id + '" style="border: none; background-color: #000" class="delete_btn"><i class="flaticon2-delete"></i></button></td>\
