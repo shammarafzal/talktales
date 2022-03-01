@@ -188,7 +188,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="edit_storyText" class="col-form-label text-right">Story Text</label>
-                                <input class="form-control" type="text" name="edit_storyText" id="edit_storyText">
+                                <input class="form-control" type="text" name="storyText" id="edit_storyText">
                                 <span class="text-danger error-text edit_storyText_error"></span>
                             </div>
                         </div>
