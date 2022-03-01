@@ -147,10 +147,11 @@
                 @method('PATCH')
                 <div class="modal-body">
                     <div class="row">
+                        <input type="hidden" name="id" id="id">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="edit_title" class="col-form-label text-right">Title</label>
-                                <input class="form-control" type="text" name="edit_title" id="edit_title">
+                                <input class="form-control" type="text" name="title" id="edit_title">
                                 <span class="text-danger error-text edit_title_error"></span>
                             </div>
                         </div>
@@ -159,7 +160,7 @@
                                 <label>Mouth Video</label>
                                 <div></div>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="edit_mouthVideo" name="edit_mouthVideo">
+                                    <input type="file" class="custom-file-input" id="edit_mouthVideo" name="mouthVideo">
                                     <label class="custom-file-label" for="edit_mouthVideo">Choose Mouth Video</label>
                                 </div>
                             </div>
@@ -169,7 +170,7 @@
                                 <label>Child Video</label>
                                 <div></div>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="edit_childVideo" name="edit_childVideo">
+                                    <input type="file" class="custom-file-input" id="edit_childVideo" name="childVideo">
                                     <label class="custom-file-label" for="edit_childVideo">Choose Child Video</label>
                                 </div>
                             </div>
@@ -179,7 +180,7 @@
                                 <label>Image</label>
                                 <div></div>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="edit_image" name="edit_image">
+                                    <input type="file" class="custom-file-input" id="edit_image" name="image">
                                     <label class="custom-file-label" for="edit_image">Choose Image</label>
                                 </div>
                             </div>
