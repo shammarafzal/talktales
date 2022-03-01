@@ -149,9 +149,9 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="title" class="col-form-label text-right">Title</label>
-                                <input class="form-control" type="text" name="title" id="title">
-                                <span class="text-danger error-text title_error"></span>
+                                <label for="edit_title" class="col-form-label text-right">Title</label>
+                                <input class="form-control" type="text" name="edit_title" id="edit_title">
+                                <span class="text-danger error-text edit_title_error"></span>
                             </div>
                         </div>
                         <div class="col-lg-12">
@@ -159,8 +159,8 @@
                                 <label>Mouth Video</label>
                                 <div></div>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="mouthVideo" name="mouthVideo">
-                                    <label class="custom-file-label" for="mouthVideo">Choose Mouth Video</label>
+                                    <input type="file" class="custom-file-input" id="edit_mouthVideo" name="edit_mouthVideo">
+                                    <label class="custom-file-label" for="edit_mouthVideo">Choose Mouth Video</label>
                                 </div>
                             </div>
                         </div>
@@ -169,8 +169,8 @@
                                 <label>Child Video</label>
                                 <div></div>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="childVideo" name="childVideo">
-                                    <label class="custom-file-label" for="childVideo">Choose Child Video</label>
+                                    <input type="file" class="custom-file-input" id="edit_childVideo" name="edit_childVideo">
+                                    <label class="custom-file-label" for="edit_childVideo">Choose Child Video</label>
                                 </div>
                             </div>
                         </div>
@@ -179,16 +179,16 @@
                                 <label>Image</label>
                                 <div></div>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="image" name="image">
-                                    <label class="custom-file-label" for="image">Choose Image</label>
+                                    <input type="file" class="custom-file-input" id="edit_image" name="edit_image">
+                                    <label class="custom-file-label" for="edit_image">Choose Image</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="storyText" class="col-form-label text-right">Story Text</label>
-                                <input class="form-control" type="text" name="storyText" id="storyText">
-                                <span class="text-danger error-text storyText_error"></span>
+                                <label for="edit_storyText" class="col-form-label text-right">Story Text</label>
+                                <input class="form-control" type="text" name="edit_storyText" id="edit_storyText">
+                                <span class="text-danger error-text edit_storyText_error"></span>
                             </div>
                         </div>
                     </div>
@@ -301,7 +301,11 @@
                         $('#editBook').modal('hide');
                     } else {
                         $('#id').val(response.book.id);
-                        $('#edit_information').val(response.book.information);
+                        $('#edit_title').val(response.book.title);
+                        $('#edit_childVideo').val(response.book.childVideo);
+                        $('#edit_mouthVideo').val(response.book.mouthVideo);
+                        $('#edit_image').val(response.book.image);
+                        $('#edit_storyText').val(response.book.storyText);
                     }
                 }
             });
