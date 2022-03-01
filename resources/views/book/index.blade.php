@@ -255,8 +255,8 @@
                             <td><video width="180" height="100" controls><source src="storage/' + book.childVideo + '"></video></td>\
                             <td><img src="storage/' + book.image + '" alt="" width="180" height="100"></td>\
                             <td>' + book.storyText + '</td>\
-                            <td><button value="' + book.id + '" style="border: none; background-color: #000" class="edit_btn"><i class="flaticon2-edit"></i></button></td>\
-                            <td><button value="' + book.id + '" style="border: none; background-color: #000" class="delete_btn"><i class="flaticon2-delete"></i></button></td>\
+                            <td><button value="' + book.id + '" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
+                            <td><button value="' + book.id + '" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
                     </tr>');
                     });
                 }
