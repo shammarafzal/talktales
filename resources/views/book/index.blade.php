@@ -299,7 +299,7 @@
                 url: 'book/' + id + '/edit',
                 success: function(response) {
                     if (response.status == 404) {
-                        $('#editBookForm').modal('hide');
+                        $('#editBook').modal('hide');
                     } else {
                         $('#id').val(response.book.id);
                         $('#edit_title').val(response.book.title);
@@ -340,7 +340,7 @@
                         $('#editBookForm')[0].reset();
                         $('.custom-file-label').text('Choose File');
                         $('#editBook').modal('hide');
-                        fetchMeditations();
+                        fetchBooks();
                     }
                 },
                 error: function(error) {
@@ -370,7 +370,7 @@
                     } else {
                         $('#addBookForm')[0].reset();
                         $('#addBook').modal('hide');
-                        fetchNotifications();
+                        fetchBooks();
                         $('#success_alert').html('<strong>Success! </strong>' + response.message)
                         $('#success_alert').css('display', 'block')
                         setTimeout(function() {
