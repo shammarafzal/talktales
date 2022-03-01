@@ -299,7 +299,7 @@
                 url: 'book/' + id + '/edit',
                 success: function(response) {
                     if (response.status == 404) {
-                        $('#editBook').modal('hide');
+                        $('#editBookForm').modal('hide');
                     } else {
                         $('#id').val(response.book.id);
                         $('#edit_title').val(response.book.title);
