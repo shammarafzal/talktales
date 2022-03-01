@@ -44,7 +44,7 @@
                             <div class="row d-flex justify-content-center">
                                 <div class="col">
                                     <p class="text-dark mb-0 font-weight-semibold">Users</p>
-                                    <!-- <h3 class="m-0">{{ count($users) }}</h3> -->
+                                    <h3 class="m-0">{{ count($users) }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                             <div class="row d-flex justify-content-center">
                                 <div class="col">
                                     <p class="text-dark mb-0 font-weight-semibold">Books</p>
-                                    <!-- <h3 class="m-0">{{ count($orders) }}</h3> -->
+                                    <h3 class="m-0">{{ count($books) }}</h3>
                                 </div>
                             </div>
                         </div>

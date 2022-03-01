@@ -30,7 +30,7 @@
                             <div class="card-body p-0 auth-header-box">
                                 <div class="text-center p-3">
                                     <a href="{{route('index')}}" class="logo logo-admin">
-                                        <img src="{{ asset('assets/images/logo.png') }}" height="50" alt="logo" class="auth-logo">
+                                        <img src="{{ asset('assets/images/logo.png') }}" height="100" alt="logo" class="auth-logo">
                                     </a>
                                     <h4 class="mt-3 mb-1 font-weight-semibold text-white font-18">Let's Get Started Talk Tales</h4>
                                     <p class="text-muted  mb-0">Sign in to continue to Talk Tales.</p>

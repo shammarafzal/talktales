@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Booking;
+use App\Models\Books;
 use App\Models\User;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -29,10 +30,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         $users = User::where('is_Admin', 0)->get();
-        // $orders = Booking::all();
+        $books = Books::all();
         View::share([
             'users' => $users,
-            'orders' => $users,
+            'books' => $books,
         ]);
     }
 }
