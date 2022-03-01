@@ -290,7 +290,7 @@
 
         $(document).on('click', '.edit_btn', function(e) {
             e.preventDefault();
-            var meditation_id = $(this).val();
+            var id = $(this).val();
             $('#editBook').modal('show');
             $(document).find('span.error-text').text('');
             $.ajax({
