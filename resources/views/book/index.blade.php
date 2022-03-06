@@ -290,104 +290,104 @@
         });
 
         $(document).on('click', '.edit_btn', function(e) {
-            e.preventDefault();
-            var id = $(this).val();
-            $('#editBook').modal('show');
-            $(document).find('span.error-text').text('');
-            $.ajax({
-                type: "GET",
-                url: 'book/' + id + '/edit',
-                success: function(response) {
-                    if (response.status == 404) {
-                        $('#editBook').modal('hide');
-                    } else {
-                        $('#id').val(response.book.id);
-                        $('#edit_title').val(response.book.title);
-                        $('#edit_childVideo').val(response.book.childVideo);
-                        $('#edit_mouthVideo').val(response.book.mouthVideo);
-                        $('#edit_image').val(response.book.image);
-                        $('#edit_storyText').val(response.book.storyText);
+                e.preventDefault();
+                var id = $(this).val();
+                $('#editBook').modal('show');
+                $(document).find('span.error-text').text('');
+                $.ajax({
+                        type: "GET",
+                        url: 'book/' + id + '/edit',
+                        success: function(response) {
+                            console.log(response);
+                            if (response.status == 404) {
+                                $('#editBook').modal('hide');
+                            } else
+                                $('#id').val(response.book.id);
+                            $('#edit_title').val(response.book.title);
+                            $('#edit_childVideo').val(response.book.childVideo);
+                            $('#edit_mouthVideo').val(response.book.mouthVideo);
+                            $('#edit_image').val(response.book.image);
+                            $('#edit_storyText').val(response.book.storyText);
+                        }
                     }
-                }
-            });
+                });
         });
 
-        $(document).on('submit', '#editBookForm', function(e) {
-            e.preventDefault();
-            var id = $('#id').val();
-            let EditFormData = new FormData($('#editBookForm')[0]);
+    $(document).on('submit', '#editBookForm', function(e) {
+        e.preventDefault();
+        var id = $('#id').val();
+        let EditFormData = new FormData($('#editBookForm')[0]);
 
-            $.ajax({
-                type: "post",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content'),
-                    '_method': 'patch'
-                },
-                url: "book/" + id,
-                data: EditFormData,
-                contentType: false,
-                processData: false,
-                beforeSend: function() {
-                    $(document).find('span.error-text').text('');
-                },
-                success: function(response) {
-                    if (response.status == 0) {
-                        $('#editBook').modal('show')
-                        $.each(response.error, function(prefix, val) {
-                            $('span.' + prefix + '_update_error').text(val[0]);
-                        });
-                    } else {
-                        $('#editBookForm')[0].reset();
-                        $('.custom-file-label').text('Choose File');
-                        $('#editBook').modal('hide');
-                        fetchBooks();
-                    }
-                },
-                error: function(error) {
-                    console.log(error)
-                    $('#editBook').modal('show');
+        $.ajax({
+            type: "post",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content'),
+                '_method': 'patch'
+            },
+            url: "book/" + id,
+            data: EditFormData,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+                $(document).find('span.error-text').text('');
+            },
+            success: function(response) {
+                if (response.status == 0) {
+                    $('#editBook').modal('show')
+                    $.each(response.error, function(prefix, val) {
+                        $('span.' + prefix + '_update_error').text(val[0]);
+                    });
+                } else {
+                    $('#editBookForm')[0].reset();
+                    $('.custom-file-label').text('Choose File');
+                    $('#editBook').modal('hide');
+                    fetchBooks();
                 }
-            });
-        })
-        $(document).on('submit', '#addBookForm', function(e) {
-            e.preventDefault();
-            let formDate = new FormData($('#addBookForm')[0]);
-            $.ajax({
-                type: "post",
-                url: "book",
-                data: formDate,
-                contentType: false,
-                processData: false,
-                beforeSend: function() {
-                    $(document).find('span.error-text').text('');
-                },
-                success: function(response) {
-                    if (response.status == 0) {
-                        $('#addBook').modal('show')
-                        $.each(response.error, function(prefix, val) {
-                            $('span.' + prefix + '_error').text(val[0]);
-                        });
-                    } else {
-                        $('#addBookForm')[0].reset();
-                        $('#addBook').modal('hide');
-                        fetchBooks();
-                        $('#success_alert').html('<strong>Success! </strong>' + response.message)
-                        $('#success_alert').css('display', 'block')
-                        setTimeout(function() {
-                            $('#success_alert').css('display', 'none')
-                        }, 5000)
-                    }
-                },
-                error: function(error) {
-                    $('#addBook').modal('show');
-                    $('#warning_alert').html('<strong>Warning! </strong>' + error.message)
-                    $('#warning_alert').css('display', 'block')
+            },
+            error: function(error) {
+                console.log(error)
+                $('#editBook').modal('show');
+            }
+        });
+    }) $(document).on('submit', '#addBookForm', function(e) {
+        e.preventDefault();
+        let formDate = new FormData($('#addBookForm')[0]);
+        $.ajax({
+            type: "post",
+            url: "book",
+            data: formDate,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+                $(document).find('span.error-text').text('');
+            },
+            success: function(response) {
+                if (response.status == 0) {
+                    $('#addBook').modal('show')
+                    $.each(response.error, function(prefix, val) {
+                        $('span.' + prefix + '_error').text(val[0]);
+                    });
+                } else {
+                    $('#addBookForm')[0].reset();
+                    $('#addBook').modal('hide');
+                    fetchBooks();
+                    $('#success_alert').html('<strong>Success! </strong>' + response.message)
+                    $('#success_alert').css('display', 'block')
                     setTimeout(function() {
-                        $('#warning_alert').css('display', 'none')
+                        $('#success_alert').css('display', 'none')
                     }, 5000)
                 }
-            });
+            },
+            error: function(error) {
+                $('#addBook').modal('show');
+                $('#warning_alert').html('<strong>Warning! </strong>' + error.message)
+                $('#warning_alert').css('display', 'block')
+                setTimeout(function() {
+                    $('#warning_alert').css('display', 'none')
+                }, 5000)
+            }
         });
+    });
     });
 </script>
 @endsection
