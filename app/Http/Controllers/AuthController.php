@@ -62,6 +62,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+       
         /** @var User $user */
         $validator = tap(Validator::make($request->all(), [
             'name' => 'required',
