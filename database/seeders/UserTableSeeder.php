@@ -19,6 +19,8 @@ class UserTableSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('password'),
+            'age' => 38,
+            'image' => 'assets/images/favicon.png',
             'is_admin' => 1,
         ]);
     }

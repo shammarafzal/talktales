@@ -13,10 +13,19 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-//AuthController Route
-Route::post('register', 'AuthController@register');
+//ForgotController Routes
+Route::post('forgot', 'ForgotController@forgot');
+Route::post('reset', 'ForgotController@reset');
+Route::post('checkToken', 'ForgotController@checkToken');
+
+//AuthController Routes
 Route::post('login', 'AuthController@login');
-Route::post('logout', 'AuthController@logout')->middleware('auth:sanctum');
+Route::post('register', 'AuthController@register');
+Route::post('verifyEmail', 'AuthController@verifyEmail');
+Route::get('user', 'AuthController@user')->middleware('auth:api');
+Route::get('logout', 'AuthController@logout')->middleware('auth:api');
+Route::get('index', 'AuthController@index')->middleware('auth:api');
+Route::post('update/{user}', 'AuthController@update')->middleware('auth:api');
 
 
 

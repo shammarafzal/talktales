@@ -21,8 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
         'age',
-        'is_admin'
+        'image',
     ];
 
     /**
@@ -47,10 +48,5 @@ class User extends Authenticatable
     public function token()
     {
         return $this->hasOne(Token::class);
-    }
-
-    public function bookings()
-    {
-        return $this->hasMany(Booking::class);
     }
 }
