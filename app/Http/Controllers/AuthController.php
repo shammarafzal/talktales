@@ -59,4 +59,72 @@ class AuthController extends Controller
             'token' => $token,
         ], 200);
     }
+
+
+    public function verifyEmail(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users',
+        ]);
+        if ($validator->fails()) {
+            $message = $validator->errors();
+            return collect([
+                'status' => false,
+                'message' => $message->first()
+            ]);
+        }
+        $token = random_int(1000, 9999);
+
+        $email = $request->input('email');
+
+        try {
+            DB::table('verify_emails')->insert([
+                'email' => $request->input('email'),
+                'token' => $token
+            ]);
+
+            Mail::send('Mails.verify', ['token' => $token], function (Message $message) use ($email) {
+                $message->to($email);
+                $message->subject('Verify Your Email');
+            });
+
+            return response([
+                'status' => true,
+                'message' => 'Check your email'
+            ]);
+        } catch (\Exception $exception) {
+            return response([
+                'status' => false,
+                'message' => $exception->getMessage()
+            ], 400);
+        }
+    }
+
+    public function verifyToken(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'token' => 'required',
+        ]);
+        if ($validator->fails()) {
+            $message = $validator->errors();
+            return collect([
+                'status' => false,
+                'message' => $message->first()
+            ]);
+        }
+        $token = $request->input('token');
+        $verify = DB::table('verify_emails')->where('email', $request->email)->orderBy('id', 'desc')->first();
+        if ($verify->token == $token) {
+            return response([
+                'status' => true,
+                'message' => 'Success',
+            ], 200);
+        } else {
+            return response([
+                'status' => false,
+                'message' => 'Invalid Token!'
+            ]);
+        }
+    }
 }
