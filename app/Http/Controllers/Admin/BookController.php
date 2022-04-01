@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\GeneralTrait;
 use App\Models\Books;
+use App\Models\ChildVideo;
+use App\Models\mouthVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -61,6 +63,21 @@ class BookController extends Controller
 
         $book = Books::create($request->all());
         $this->storeImage($book);
+        foreach ($request->childVideo as $childVideo){
+            $video = time().'.'.$childVideo->extension();
+            ChildVideo::create([
+                'book_id' => $book->id,
+                'video' => $childVideo->store('childVideos', 'public'),
+            ]);
+        }
+
+        foreach ($request->mouthVideo as $mouthVideo){
+            $video = time().'.'.$mouthVideo->extension();
+            mouthVideo::create([
+                'book_id' => $book->id,
+                'video' => $mouthVideo->store('mouthVideos', 'public'),
+            ]);
+        }
         if ($book) {
             return response()->json(['status' => 1, 'message' => 'Book added successfully']);
         }
@@ -149,8 +166,7 @@ class BookController extends Controller
     {
         $book->update([
             'image' => $this->imagePath('image', 'book', $book),
-            'childVideo' => $this->imagePath('childVideo', 'book', $book),
-            'mouthVideo' => $this->imagePath('mouthVideo', 'book', $book),
         ]);
     }
+
 }

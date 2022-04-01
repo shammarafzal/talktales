@@ -12,7 +12,14 @@ class Books extends Model
         'title',
         'storyText',
         'image',
-        'childVideo',
-        'mouthVideo',
     ];
+
+    public function childVideos(){
+        return $this->hasMany(ChildVideo::class);
+    }
+
+    public function mouthVideos(){
+        return $this->hasMany(mouthVideo::class);
+    }
+
 }

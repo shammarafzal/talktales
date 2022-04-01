@@ -71,7 +71,7 @@
                 </button>
             </div>
             <!--end modal-header-->
-            <form method="post" id="addBookForm">
+            <form method="post" id="addBookForm" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -87,7 +87,7 @@
                                 <label>Mouth Video</label>
                                 <div></div>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="mouthVideo" name="mouthVideo">
+                                    <input type="file" class="custom-file-input" id="mouthVideo" name="mouthVideo[]" multiple>
                                     <label class="custom-file-label" for="mouthVideo">Choose Mouth Video</label>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                                 <label>Child Video</label>
                                 <div></div>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="childVideo" name="childVideo">
+                                    <input type="file" class="custom-file-input" id="childVideo" name="childVideo[]" multiple>
                                     <label class="custom-file-label" for="childVideo">Choose Child Video</label>
                                 </div>
                             </div>
