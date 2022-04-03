@@ -28,6 +28,7 @@ class AuthController extends Controller
 
         return response()->json([
             'status' => true,
+            'message' => 'Account Created Successfully',
             'user' => $user,
             'token' => $token,
         ], 201);
