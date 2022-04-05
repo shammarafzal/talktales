@@ -135,7 +135,7 @@ class AuthController extends Controller
 
     public function user()
     {
-        $user =  User::where('id', Auth::id())->get();
+        $user =  User::where('id', auth()->user()->id)->get();
         return response()->json($user);
     }
 }
