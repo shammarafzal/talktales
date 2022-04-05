@@ -19,5 +19,5 @@ Route::post('login', 'AuthController@login');
 Route::post('logout', 'AuthController@logout')->middleware('auth:sanctum');
 Route::post('verifyToken', 'AuthController@verifyToken');
 Route::post('verifyEmail', 'AuthController@verifyEmail');
-
+Route::get('user', 'AuthController@user')->middleware('auth:sanctum');
 Route::get('fetchBooks', 'BookController@fetchBooks')->middleware('auth:sanctum');
