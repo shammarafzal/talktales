@@ -9,7 +9,7 @@ class BookController extends Controller
 {
     public function fetchBooks()
     {
-        $books = Books::all();
+        $books = Books::with('childVideos', 'mouthVideos')->get();
         return response()->json($books);
     }
 }
