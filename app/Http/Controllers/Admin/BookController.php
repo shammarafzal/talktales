@@ -63,18 +63,18 @@ class BookController extends Controller
 
         $book = Books::create($request->all());
         $this->storeImage($book);
-        foreach ($request->childVideo as $childVideo){
-            $video = time().'.'.$childVideo->extension();
+        foreach ($request->childVideo as $childVideo) {
+            $video = time() . '.' . $childVideo->extension();
             ChildVideo::create([
-                'book_id' => $book->id,
+                'books_id' => $book->id,
                 'video' => $childVideo->store('childVideos', 'public'),
             ]);
         }
 
-        foreach ($request->mouthVideo as $mouthVideo){
-            $video = time().'.'.$mouthVideo->extension();
+        foreach ($request->mouthVideo as $mouthVideo) {
+            $video = time() . '.' . $mouthVideo->extension();
             mouthVideo::create([
-                'book_id' => $book->id,
+                'books_id' => $book->id,
                 'video' => $mouthVideo->store('mouthVideos', 'public'),
             ]);
         }
@@ -168,5 +168,4 @@ class BookController extends Controller
             'image' => $this->imagePath('image', 'book', $book),
         ]);
     }
-
 }
