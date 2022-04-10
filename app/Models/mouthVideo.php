@@ -9,10 +9,11 @@ class mouthVideo extends Model
 {
     protected $fillable = [
         'video',
-        'book_id',
+        'books_id',
     ];
 
-    public function book(){
+    public function book()
+    {
         return $this->belongsTo(Books::class);
     }
 
