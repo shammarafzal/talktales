@@ -15,10 +15,10 @@ class CreateMouthVideosTable extends Migration
     {
         Schema::create('mouth_videos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('book_id');
+            $table->unsignedBigInteger('books_id');
             $table->string('video')->nullable();
 
-            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('books_id')->references('id')->on('books');
             $table->timestamps();
         });
     }
