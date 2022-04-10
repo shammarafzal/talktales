@@ -69,22 +69,15 @@ class AuthController extends Controller
             }
             /** @var User $user */
             $user = Auth::user();
-            if ($user->verify == 0) {
-                $response = [
-                    'status' => false,
-                    'message' => 'You are not Verified',
-                ];
-                return response()->json($response, 413);
-            } else {
-                $token = $user->createToken('app')->accessToken;
-                $response = [
-                    'status' => true,
-                    'message' => 'Success',
-                    'token' => $token,
-                    'user' => $user
-                ];
-                return response()->json($response, 200);
-            }
+
+            $token = $user->createToken('app')->accessToken;
+            $response = [
+                'status' => true,
+                'message' => 'Success',
+                'token' => $token,
+                'user' => $user
+            ];
+            return response()->json($response, 200);
         } catch (\Exception $exception) {
             return response([
                 'status' => false,
