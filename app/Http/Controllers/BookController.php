@@ -20,7 +20,7 @@ class BookController extends Controller
             return response()->json([
                 'status' => true,
                 'data' => $books,
-            ]);
+            ], 200);
         } else {
             return response()->json([
                 'status' => false,
