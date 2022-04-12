@@ -16,7 +16,7 @@ class BookController extends Controller
     {
         if ($request->search) {
             $search = $request->input('search');
-            $books = Books::Where('title', 'like', '%' . $search . '%')->get();
+            $books = Books::with('childVideos', 'mouthVideos')->where('title', 'like', '%' . $search . '%')->get();
             return response([
                 'status' => true,
                 'data' => $books,
