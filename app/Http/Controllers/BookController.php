@@ -17,13 +17,11 @@ class BookController extends Controller
         if ($request->search) {
             $search = $request->input('search');
             $books = Books::with('childVideos', 'mouthVideos')->where('title', 'like', '%' . $search . '%')->get();
-            return response()->json([
-                'data' => $books,
-            ], 200);
+            return response()->json($books);
         } else {
-            return response()->json([
-                'data' => Books::all(),
-            ]);
+            return response()->json(
+                Books::all(),
+            );
         }
     }
 }
