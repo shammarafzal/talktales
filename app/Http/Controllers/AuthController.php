@@ -50,12 +50,13 @@ class AuthController extends Controller
             'password' => 'required|min:8',
             'password_confirm' => 'required|same:password',
         ]);
-
-        // $user =  User::where('id', auth()->user()->id)->get();
-
         DB::table('users')
             ->where('id', auth()->user()->id)
             ->update(['password' => Hash::make($request->input('password')),]);
+        return response()->json([
+            'status' => true,
+            'message' => 'Password Change Successfully',
+        ], 200);
     }
     public function login(Request $request)
     {
