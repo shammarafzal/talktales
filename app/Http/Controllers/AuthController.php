@@ -43,6 +43,19 @@ class AuthController extends Controller
         ]);
     }
 
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|min:8',
+            'password_confirm' => 'required|same:password',
+        ]);
+
+        $user =  User::where('id', auth()->user()->id)->get();
+
+        DB::table('users')
+            ->where('id', $user->id)
+            ->update(['password' => $request->password]);
+    }
     public function login(Request $request)
     {
         $request->validate([
