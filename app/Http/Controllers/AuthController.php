@@ -52,7 +52,7 @@ class AuthController extends Controller
         ]);
 
         $user =  User::where('id', auth()->user()->id)->get();
-        dd($user->id);
+        dd($user['id']);
         DB::table('users')
             ->where('id', $user->id)
             ->update(['password' => $request->password]);
