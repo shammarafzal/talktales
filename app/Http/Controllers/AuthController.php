@@ -51,10 +51,10 @@ class AuthController extends Controller
             'password_confirm' => 'required|same:password',
         ]);
 
-        $user =  User::where('id', auth()->user()->id)->get();
-        dd($user['id']);
+        // $user =  User::where('id', auth()->user()->id)->get();
+
         DB::table('users')
-            ->where('id', $user->id)
+            ->where('id', auth()->user()->id)
             ->update(['password' => $request->password]);
     }
     public function login(Request $request)
