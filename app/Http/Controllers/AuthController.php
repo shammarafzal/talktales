@@ -55,7 +55,7 @@ class AuthController extends Controller
 
         DB::table('users')
             ->where('id', auth()->user()->id)
-            ->update(['password' => $request->password]);
+            ->update(['password' => Hash::make($request->input('password')),]);
     }
     public function login(Request $request)
     {
